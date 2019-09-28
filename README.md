@@ -22,6 +22,7 @@ Bootstrap Frontend (https://github.com/thiagoluna/bootstrap_frontend_crud)
 5- Views
 
 - 4 blade views in resources/views
+- Form Search and Pagination
 
 6- Routes
 
