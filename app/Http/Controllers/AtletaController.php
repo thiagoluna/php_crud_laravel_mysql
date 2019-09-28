@@ -8,7 +8,7 @@ use App\Models\Atleta;
 class AtletaController extends Controller
 {
     public function index(){
-        $atletas = Atleta::all();
+        $atletas = Atleta::paginate(2);
         $total = Atleta::all()->count();
         return view('index', compact('atletas', 'total'));
     }
