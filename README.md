@@ -15,7 +15,7 @@ Bootstrap Frontend (https://github.com/thiagoluna/bootstrap_frontend_crud)
 
 3- Model
 
-J- ust 1 model, but can be an example for others
+- Just 1 model, but can be an example for others
 
 4- Controller
 
