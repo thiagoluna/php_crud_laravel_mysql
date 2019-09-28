@@ -27,3 +27,5 @@ Bootstrap Frontend (https://github.com/thiagoluna/bootstrap_frontend_crud)
 
 - Main route - Route::resource('atleta','AtletaController')
 - Only this route allow use 5 methods: show - edit - store - update - destroy
+
+7- Demo (http://progtisolucoes.com.br/php_crud_laravel_mysql/)
