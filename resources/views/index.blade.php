@@ -43,7 +43,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Início</a></li>
+            <li><a href="{{URL::asset('/')}}">Início</a></li>
             <li><a href="#">Opções</a></li>
             <li><a href="#">Perfil</a></li>
             <li><a href="#">Ajuda</a></li>
@@ -56,26 +56,28 @@
     <div id="main" class="container-fluid" style="margin-top: 50px">
         <!-- Topo do container com 3 colunas -->        
         <div id="top" class="row">
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <h2>Atletas Cadastrados - {{$total}}</h2>
             </div>
-            <!--
+            <!-- Form Busca -->
             <div class="col-md-6">
-                <div class="input-group h2">
-                    <input name="data[search]" class="form-control" id="search" type="text" placeholder="Pesquisar Itens">
-                    <span class="input-group-btn">
-                        <button class="btn btn-primary" type="submit">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                    </span>
-                </div>
+                <form action="{{ url('/busca') }}" method="post">   
+                    <div class="input-group h2">                                        
+                            {{ csrf_field() }}
+                            <input name="criterio" class="form-control" id="criterio" type="text" placeholder="Pesquisar Atletas" value="">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary" type="submit">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </span>                                
+                    </div>
+                </form>
             </div>
-            -->
-            <div class="col-md-6">
+            <!-- Botão Novo -->
+            <div class="col-md-3">
                 <a href="{{URL::asset('add-atleta/')}}" class="btn btn-primary pull-right h2">Novo Item</a>
             </div>            
         </div> <!-- /#top -->
-    
         <hr />
         <!-- Listagem dos itens do bd -->
         @if (session('message'))
@@ -121,22 +123,13 @@
                 </table>          
             </div>
         </div> <!-- /#listagem -->
-    
-        {!! $atletas->links() !!}
-        
-        <!-- bottom contendo paginação 
-        <div id="bottom" class="row">
-            <div class="col-md-12">
-                <ul class="pagination">
-                    <li class="disabled"><a>&lt; Anterior</a></li>
-                    <li class="disabled"><a>1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li class="next"><a href="#" rel="next">Próximo &gt;</a></li>
-                </ul>
-            </div>
-        </div>
-        /#bottom -->
+
+        <!-- Paginação -->    
+        @if(isset($criterio))
+            {{ $atletas->appends(['criterio' => $criterio])->links() }}
+        @else
+            {!! $atletas->links() !!}
+        @endif
     </div>  <!-- /#main -->
 
     <!-- scripts -->

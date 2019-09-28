@@ -13,6 +13,13 @@ class AtletaController extends Controller
         return view('index', compact('atletas', 'total'));
     }
 
+    public function busca(Request $request){
+        $criterio = $request->criterio;
+        $total = Atleta::all()->count();
+        $atletas = Atleta::where('name', 'LIKE', '%' . $criterio . '%')->paginate(2);
+        return view('index', compact('atletas', 'total', 'criterio'));
+    }
+
     public function show($id){
         $atleta = Atleta::findOrFail($id);
         return view('list-item', compact('atleta'));
